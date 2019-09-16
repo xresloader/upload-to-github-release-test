@@ -9,7 +9,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - uses: xresloader/upload-to-github-release@master
+    - uses: xresloader/upload-to-github-release
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
         file:
