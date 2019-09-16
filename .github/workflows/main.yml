@@ -12,7 +12,6 @@ jobs:
     - uses: xresloader/upload-to-github-release@master
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
-        file:
-          - "*.md"
+        file: ["*.md"]
         tags: true
         draft: true
