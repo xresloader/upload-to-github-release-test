@@ -9,10 +9,10 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - uses: xresloader/upload-to-github-release
+    - uses: xresloader/upload-to-github-release@master
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
         file:
-        - *.md
+          - "*.md"
         tags: true
         draft: true
