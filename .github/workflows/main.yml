@@ -14,3 +14,7 @@ jobs:
         file: "*.md"
         tags: true
         draft: true
+        branches: "master;dev"
+    - name: "find env"
+      run: |
+        set | grep GITHUB_ | grep -v GITHUB_TOKEN
