@@ -1,7 +1,10 @@
 name: release
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#on
-on: [push]
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
