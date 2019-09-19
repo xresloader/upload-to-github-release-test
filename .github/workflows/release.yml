@@ -8,13 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: "find env"
+      run: |
+        set | grep GITHUB_ | grep -v GITHUB_TOKEN
+        zip -r pkg.zip *.md
     - uses: xresloader/upload-to-github-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        file: "*.md"
-        tags: true
+        file: "*.md;*.zip"
+        tags: false
         draft: true
-    - name: "find env"
-      run: |
-        set | grep GITHUB_ | grep -v GITHUB_TOKEN
+        prerelease: true
