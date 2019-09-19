@@ -1,7 +1,7 @@
 name: release
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#on
-on: create
+on: [push]
 
 jobs:
   build:
@@ -17,7 +17,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         file: "*.md;*.zip"
-        tags: false
-        draft: true
+        tags: true
+        draft: false
         prerelease: true
         overwrite: true
+        verbose: true
