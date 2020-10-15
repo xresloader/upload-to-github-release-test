@@ -11,11 +11,14 @@ jobs:
         run: |
           set | grep GITHUB_ | grep -v GITHUB_TOKEN
           zip -r pkg.zip *.md
+          echo "$(openssl rand -hex 4)" > "random-name-$(openssl rand -hex 4).txt"
+          echo "$(openssl rand -hex 4)" > "random-name-$(openssl rand -hex 4).txt"
       - uses: xresloader/upload-to-github-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "*.md;*.zip"
+          file: "*.md;*.zip;random-name-*.txt"
+          delete_file: "random-name-*.txt"
           tags: false
           draft: true
           branches: "master;dev"
