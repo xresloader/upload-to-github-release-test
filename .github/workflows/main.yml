@@ -19,7 +19,5 @@ jobs:
         with:
           file: "*.md;*.zip;random-name-*.txt"
           delete_file: "random-name-*.txt"
-          tags: false
-          draft: true
           branches: "main;dev"
           verbose: true
