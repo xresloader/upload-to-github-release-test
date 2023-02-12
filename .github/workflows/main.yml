@@ -35,6 +35,7 @@ jobs:
         shell: bash
         run: |
           set | grep GITHUB_ | grep -v GITHUB_TOKEN
+          mkdir -p test/subdir
           echo "$(openssl rand -hex 6)" > "test/subdir/random-name-windows-$(openssl rand -hex 6).txt"
           echo "$(openssl rand -hex 6)" > "test/subdir/random-name-windows-$(openssl rand -hex 6).txt"
           echo "$(openssl rand -hex 6)" > "test/subdir/absulote-path-test-windows.txt"
