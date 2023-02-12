@@ -29,6 +29,7 @@ jobs:
           prerelease: true
   windows_test:
     runs-on: windows-latest
+    needs: [linux_test]
     steps:
       - uses: actions/checkout@v1
       - name: "find env"
