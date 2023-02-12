@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  linux_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -15,14 +15,35 @@ jobs:
           set | grep GITHUB_ | grep -v GITHUB_TOKEN
           zip -r pkg.zip *.md
           mkdir -p test/subdir
-          echo "$(openssl rand -hex 6)" > "test/subdir/random-name-$(openssl rand -hex 6).txt"
-          echo "$(openssl rand -hex 6)" > "test/subdir/random-name-$(openssl rand -hex 6).txt"
+          echo "$(openssl rand -hex 6)" > "test/subdir/random-name-linux-$(openssl rand -hex 6).txt"
+          echo "$(openssl rand -hex 6)" > "test/subdir/random-name-linux-$(openssl rand -hex 6).txt"
+          echo "$(openssl rand -hex 6)" > "test/subdir/absulote-path-test-linux.txt"
       - uses: xresloader/upload-to-github-release@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "*.md;*.zip;test\\subdir/random-name-*.txt"
-          delete_file: "random-name-*.txt"
+          file: "*.md;*.zip;test/subdir/random-name-linux-*.txt;${{ github.workspace }}/test/subdir/absulote-path-test-linux.txt"
+          delete_file: "*linux*.txt"
+          branches: "main;dev"
+          verbose: true
+          prerelease: true
+  windows_test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: "find env"
+        shell: bash
+        run: |
+          set | grep GITHUB_ | grep -v GITHUB_TOKEN
+          echo "$(openssl rand -hex 6)" > "test/subdir/random-name-windows-$(openssl rand -hex 6).txt"
+          echo "$(openssl rand -hex 6)" > "test/subdir/random-name-windows-$(openssl rand -hex 6).txt"
+          echo "$(openssl rand -hex 6)" > "test/subdir/absulote-path-test-windows.txt"
+      - uses: xresloader/upload-to-github-release@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "test\\subdir\\random-name-windows-*.txt;${{ github.workspace }}\\test\\subdir\\absulote-path-test-windows.txt"
+          delete_file: "*windows*.txt"
           branches: "main;dev"
           verbose: true
           prerelease: true
