@@ -27,11 +27,12 @@ jobs:
           branches: "main;dev"
           verbose: true
           prerelease: true
+          default_release_name: "Test release name for main branch"
   windows_test:
     runs-on: windows-latest
     needs: [linux_test]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: "find env"
         shell: bash
         run: |
