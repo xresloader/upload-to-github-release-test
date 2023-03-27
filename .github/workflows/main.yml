@@ -9,7 +9,7 @@ jobs:
   linux_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: "find env"
         run: |
           set | grep GITHUB_ | grep -v GITHUB_TOKEN
@@ -49,3 +49,4 @@ jobs:
           branches: "main;dev"
           verbose: true
           prerelease: true
+          default_release_name: "Test release name for main branch"
