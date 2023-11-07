@@ -19,8 +19,6 @@ jobs:
           echo "$(openssl rand -hex 6)" > "test/subdir/random-name-linux-$(openssl rand -hex 6).txt"
           echo "$(openssl rand -hex 6)" > "test/subdir/absulote-path-test-linux.txt"
       - uses: xresloader/upload-to-github-release@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "*.md;*.zip;test/subdir/random-name-linux-*.txt;${{ github.workspace }}/test/subdir/absulote-path-test-linux.txt"
           delete_file: "*linux*.txt"
@@ -28,6 +26,7 @@ jobs:
           verbose: true
           prerelease: true
           default_release_name: "Test release name for main branch"
+          default_release_body: "Test release body for main branch"
   windows_test:
     runs-on: windows-latest
     needs: [linux_test]
@@ -42,8 +41,6 @@ jobs:
           echo "$(openssl rand -hex 6)" > "test/subdir/random-name-windows-$(openssl rand -hex 6).txt"
           echo "$(openssl rand -hex 6)" > "test/subdir/absulote-path-test-windows.txt"
       - uses: xresloader/upload-to-github-release@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "test\\subdir\\random-name-windows-*.txt;${{ github.workspace }}\\test\\subdir\\absulote-path-test-windows.txt"
           delete_file: "*windows*.txt"
