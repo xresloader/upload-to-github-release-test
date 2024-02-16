@@ -9,7 +9,7 @@ jobs:
   linux_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: "Show settings and generate random files"
         run: |
           set | grep GITHUB_ | grep -v GITHUB_TOKEN
@@ -31,7 +31,7 @@ jobs:
     runs-on: windows-latest
     needs: [linux_test]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: "Show settings and generate random files"
         shell: bash
         run: |
