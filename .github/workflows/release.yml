@@ -10,7 +10,7 @@ jobs:
   draft_release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: "find env"
         run: |
           set | grep GITHUB_ | grep -v GITHUB_TOKEN
@@ -43,7 +43,7 @@ jobs:
   prelease:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: "find env"
         run: |
           set | grep GITHUB_ | grep -v GITHUB_TOKEN
